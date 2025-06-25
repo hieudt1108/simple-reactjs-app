@@ -35,6 +35,7 @@ pipeline {
         sh '''
           docker rm -f react-viewer || true
           docker run -d -p 3000:80 \
+            --user root \
             -v $WORKSPACE/build:/usr/share/nginx/html \
             --name react-viewer nginx
         '''

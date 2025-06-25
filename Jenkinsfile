@@ -23,7 +23,14 @@ pipeline {
         sh 'npm run build'
       }
     }
-
+    stage('Copy build to shared folder') {
+          steps {
+            sh '''
+              rm -rf /mnt/d/nginx-react/*
+              cp -r build/* /mnt/d/nginx-react/
+            '''
+          }
+        }
     stage('Archive build output') {
       steps {
         archiveArtifacts artifacts: 'build/**', fingerprint: true

@@ -1,18 +1,24 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:18'
-    }
-  }
+  agent any
 
   stages {
     stage('Install dependencies') {
+      agent {
+        docker {
+          image 'node:18'
+        }
+      }
       steps {
         sh 'npm install'
       }
     }
 
     stage('Build React App') {
+      agent {
+        docker {
+          image 'node:18'
+        }
+      }
       steps {
         sh 'npm run build'
       }
